@@ -1,22 +1,25 @@
-package com.wx.service;
+package com.wx.demo.service;
 
-import com.wx.dao.IUser;
-import com.wx.dao.UserDao;
-import com.wx.model.User;
+import com.wx.demo.dao.IUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedCaseInsensitiveMap;
 
 import java.util.List;
 
+
+/**
+ * @author wx
+ */
 @Service
+@ComponentScan
 public class UserService {
 
+	@Autowired
+	IUser iUser;
+
 	public void showAllUser(){
-
-
-		IUser iUser = new UserDao();
-
 		List list =  iUser.allUser();
 		for (Object s: list	) {
 			LinkedCaseInsensitiveMap user = (LinkedCaseInsensitiveMap)s;

@@ -1,27 +1,23 @@
-package com.wx.dao;
+package com.wx.demo.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public class UserDao implements IUser{
+/**
+ * @author wx
+ */
+@Repository
+public class UserDao implements com.wx.demo.dao.IUser {
 
-	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-
-	public UserDao(){
-		DriverManagerDataSource dataSource=new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/test");
-		dataSource.setUsername("root");
-		dataSource.setPassword("123456");
-		this.jdbcTemplate=new JdbcTemplate(dataSource);
+	@Autowired
+	private void setJdbcTemplate(JdbcTemplate jdbcTemplate){
+		this.jdbcTemplate = jdbcTemplate;
 	}
-
 
 	@Override
 	public List allUser() {

@@ -1,7 +1,10 @@
-package com.wx.dao;
+package com.wx.demo.dao;
 
 import java.util.List;
 
+/**
+ * @author wx
+ */
 public interface IUser {
 	/**
 	 * 增
