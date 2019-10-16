@@ -19,7 +19,11 @@ public class UserService {
 	@Autowired
 	IUser iUser;
 
-	public void showAllUser(){
+	/**
+	 *
+	 * @return
+	 */
+	public List showAllUser(){
 		List list =  iUser.allUser();
 		for (Object s: list	) {
 			LinkedCaseInsensitiveMap user = (LinkedCaseInsensitiveMap)s;
@@ -29,7 +33,20 @@ public class UserService {
 					"\tuserPassword="+user.get("userPassword")+
 					"\tuserType="+user.get("userType")
 			);
-
 		}
+		return list;
+	}
+
+	public int registerUser(String username,String password){
+		int result =  iUser.createUser(username,password,0);
+		return result;
+	}
+
+	public int update(String userId,String userName,String userPassword,int userType){
+		return iUser.updateUser(userId,userName,userPassword,userType);
+	}
+
+	public int delete(String userId){
+		return iUser.deleteUser(userId);
 	}
 }

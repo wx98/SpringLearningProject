@@ -8,18 +8,29 @@ import java.util.List;
 public interface IUser {
 	/**
 	 * 增
+	 * @param username 用户名
+	 * @param password 密码
+	 * @param type  用户类型
+	 * @return
 	 */
-	void createUser();
+	int createUser(String username,String password ,int type);
 
 	/**
-	 * 删
+	 * 根据用户的userid删除一条角色信息
+	 * @param userId
+	 * @return
 	 */
-	void deleteUser();
+	int deleteUser(String userId);
 
 	/**
-	 * 改
+	 * 根据用户的userid删除一条角色信息
+	 * @param userId
+	 * @param username
+	 * @param password
+	 * @param type
+	 * @return
 	 */
-	void updateUser();
+	int updateUser(String userId,String username,String password ,int type);
 
 	/**
 	 * 查
@@ -27,15 +38,4 @@ public interface IUser {
 	 */
 	List allUser();
 
-	/**
-	 * 根据用户名查找密码
-	 * @param userName
-	 */
-	void usernameToFindPassword(String userName);
-
-	/**
-	 *  根据用户Id查找密码
-	 * @param userID
-	 */
-	void useridToFindPassword(String userID);
 }

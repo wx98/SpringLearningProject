@@ -19,6 +19,11 @@ public class UserDao implements com.wx.demo.dao.IUser {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
+
+	/**
+	 * 查询user表中所有内容
+	 * @return
+	 */
 	@Override
 	public List allUser() {
 		String sql="select * from user;";
@@ -26,28 +31,31 @@ public class UserDao implements com.wx.demo.dao.IUser {
 		return userList;
 	}
 
+	/**
+	 * 创建一个用户
+	 * @return
+	 */
 	@Override
-	public void usernameToFindPassword(String userName) {
-
+	public int createUser(String username,String password ,int type) {
+		String sql = "insert into user (userName,userPassword,userType) values(?,?,?)";
+		return jdbcTemplate.update(sql, username,password,type);
 	}
 
+	/**
+	 * 根据userId删除一个用户
+	 */
 	@Override
-	public void useridToFindPassword(String userID) {
-
+	public int deleteUser(String userId) {
+		String sql = "delete from user where userId = ?";
+		return jdbcTemplate.update(sql,userId);
 	}
 
+	/**
+	 * 修改User信息
+	 */
 	@Override
-	public void createUser() {
-
-	}
-
-	@Override
-	public void deleteUser() {
-
-	}
-
-	@Override
-	public void updateUser() {
-
+	public int updateUser(String userId,String username,String password ,int type) {
+		String sql = "update user set userName = ?, userPassword = ?,userType = ? where userId = ?";
+		return jdbcTemplate.update(sql,username,password,type,userId);
 	}
 }
