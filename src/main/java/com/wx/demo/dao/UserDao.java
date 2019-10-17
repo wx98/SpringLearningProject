@@ -2,6 +2,7 @@ package com.wx.demo.dao;
 
 import com.wx.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -44,16 +45,15 @@ public class UserDao implements com.wx.demo.dao.IUser {
 	 * @return
 	 */
 	@Override
-	public int checkLogin(String userName, String userPassword) {
+	public int checkLogin(String userName, String userPassword) throws EmptyResultDataAccessException{
 		String sql = "select * from user where userName = ? && userPassword=? ";
 		final int[] mark = {0};
 		jdbcTemplate.queryForObject(sql, new Object[]{userName, userPassword}, new RowMapper<User>() {
 			@Override
 			public User mapRow(ResultSet resultSet, int i) throws SQLException {
 				System.out.println("userid = " + resultSet.getInt("userId"));
-				mark[0] = 1;
+				mark[0] = resultSet.getInt("userId");
 				return null;
-
 			}
 		});
 		return mark[0];

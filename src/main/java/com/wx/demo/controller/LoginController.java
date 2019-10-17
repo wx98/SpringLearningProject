@@ -2,6 +2,7 @@ package com.wx.demo.controller;
 
 import com.wx.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,11 +29,17 @@ public class LoginController {
 	@PostMapping(value="/login")
 	public String Login(@RequestParam("myUserName") String username,@RequestParam("myPassWord")String password){
 		System.out.println("login---username:"+username+",password:"+password);
-		if(userService.login(username,password)>0){
-			System.out.println("登录成功");
-			return "LoginSuccess";
+		try {
+			if(userService.login(username,password) >= 0){
+				System.out.println("登录成功");
+				return "LoginSuccess";
+			}else {
+				return "Login";
+			}
+		}catch (EmptyResultDataAccessException e){
+			return "Login";
 		}
-		return "Login";
+
 	}
 
 	@RequestMapping("/register")

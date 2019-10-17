@@ -3,6 +3,7 @@ package com.wx.demo.service;
 import com.wx.demo.dao.IUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedCaseInsensitiveMap;
 
@@ -37,7 +38,7 @@ public class UserService {
 		return list;
 	}
 
-	public int login(String username,String password){
+	public int login(String username,String password) throws EmptyResultDataAccessException {
 		return iUser.checkLogin(username,password);
 	}
 
