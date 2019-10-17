@@ -3,7 +3,7 @@ package com.wx.demo.controller;
 import com.wx.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -20,10 +20,18 @@ public class LoginController {
 
 	}
 
-	@RequestMapping("/login")
+	@GetMapping(value="/login")
 	public String Login(){
-		System.out.println("login---");
-		userService.showAllUser();
+		return "Login";
+	}
+
+	@PostMapping(value="/login")
+	public String Login(@RequestParam("myUserName") String username,@RequestParam("myPassWord")String password){
+		System.out.println("login---username:"+username+",password:"+password);
+		if(userService.login(username,password)>0){
+			System.out.println("登录成功");
+			return "LoginSuccess";
+		}
 		return "Login";
 	}
 

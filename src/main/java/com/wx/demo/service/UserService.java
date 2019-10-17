@@ -37,6 +37,10 @@ public class UserService {
 		return list;
 	}
 
+	public int login(String username,String password){
+		return iUser.checkLogin(username,password);
+	}
+
 	public int registerUser(String username,String password){
 		int result =  iUser.createUser(username,password,0);
 		return result;

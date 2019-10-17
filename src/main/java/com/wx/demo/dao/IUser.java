@@ -38,4 +38,11 @@ public interface IUser {
 	 */
 	List allUser();
 
+	/**
+	 * 检查登录
+	 * @param useName
+	 * @param userPassword
+	 * @return
+	 */
+	int checkLogin(String useName,String userPassword);
 }
