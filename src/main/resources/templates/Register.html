@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>Login</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <style type="text/css">
+        input, button, a {
+            margin: 10px
+        }
+    </style>
 </head>
 <body>
-This's test Register pages.Templates
+<div style="margin-top: 200px">
+    <form method="post" id="registerUser" action="/user/register" role="form" class=" form-group col-md-2 col-md-offset-5">
+        <h1 class="text-center">注册</h1>
+        <input id="UserName" name="UserName" type="text" placeholder="用户名" class="form-control">
+        <input id="PassWord1" name="PassWord1" type="password" placeholder="密码" class="form-control">
+        <input id="PassWord2" name="PassWord2" type="password" placeholder="确认密码" class="form-control">
+        <button id="submit" type="submit" class="form-control form-group">注册</button>
+    </form>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

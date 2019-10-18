@@ -42,11 +42,16 @@ public class LoginController {
 
 	}
 
-	@RequestMapping("/register")
-	public String registerUser(String userName,String userPassword){
+	@GetMapping("/register")
+	public String registerUser(){
+		return "Register";
+	}
+
+	@PostMapping("/register")
+	public String registerUser(@RequestParam("UserName")String userName,@RequestParam("PassWord1")String userPassword){
 		System.out.println("register---");
 		userService.registerUser(userName,userPassword);
-		return "Register";
+		return "Login";
 	}
 
 	@RequestMapping("/delete")
